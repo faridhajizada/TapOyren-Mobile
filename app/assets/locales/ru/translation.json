@@ -1,0 +1,91 @@
+{
+  "tabs": {
+    "home": "Главная",
+    "search": "Поиск",
+    "categories": "Категории",
+    "myCourses": "Мои Курсы",
+    "account": "Кабинет"
+  },
+  "home": {
+    "title": {
+      "h1": "Достигни",
+      "h2": "Свои",
+      "h3": "Цели"
+    },
+    "headers": {
+      "topRated": "Популярные"
+    },
+    "seeAll": "все"
+  },
+  "search": {
+    "title": "Поиск",
+    "placeholder": "Введите",
+    "discoverH": "Discover our courses",
+    "discoverTxt": "Try to discover new courses with search or browse our categories.",
+    "noMatchH": "No matching courses",
+    "noMatchTxt": "Try a different search."
+  },
+  "categories": {
+    "title": "Категории"
+  },
+  "myCourses": {
+    "title": "Мои Курсы",
+    "noEnrollH": "No enrolled course yet",
+    "noEnrollTxt": "Search or browse categories to find a course for you."
+  },
+  "account": {
+    "title": "Кабинет",
+    "role": {
+      "student": "Студент",
+      "instructor": "Инструктор"
+    },
+    "list": {
+      "theme": "Темная тема",
+      "info": "Детали",
+      "lang": "Язык",
+      "about": "О нас",
+      "faq": "Часто задаваемые вопросы",
+      "call": "Связь",
+      "terms": "Условия использования",
+      "logout": "Выход"
+    }
+  },
+  "course": {
+    "hour": "часов",
+    "enrolled": "Записан",
+    "profile": "Профиль",
+    "tabs": {
+      "videos": "Видео",
+      "about": "Инфо",
+      "more": {
+        "title": "Прочее",
+        "share": "Поделиться",
+        "rate": "Оценить"
+      }
+    },
+    "enroll": {
+      "title": "Записаться",
+      "btn": "Записаться",
+      "monthly": "Месячная",
+      "quarterly": "Квартальная",
+      "semianually": "Полугодовая",
+      "anually": "Годовая"
+    },
+    "instructor": {
+      "title": "Инструктор",
+      "about": "Информация",
+      "showM": "больше",
+      "showL": "меньше",
+      "courses": "Курсы"
+    }
+  },
+  "auth": {
+    "signin": "Войти",
+    "signup": "Регистрация",
+    "forget": "Забыл пароль?",
+    "reset": "Обновить пароль",
+    "agree": "Согласен с ",
+    "checkEmail": "Please check your email for reset password",
+    "agreeError": "Please read and agree with the terms"
+  }
+}

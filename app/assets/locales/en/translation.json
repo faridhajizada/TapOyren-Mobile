@@ -1,0 +1,91 @@
+{
+  "tabs": {
+    "home": "Home",
+    "search": "Search",
+    "categories": "Categories",
+    "myCourses": "My Courses",
+    "account": "Account"
+  },
+  "home": {
+    "title": {
+      "h1": "Achieve",
+      "h2": "Your",
+      "h3": "Goals"
+    },
+    "headers": {
+      "topRated": "Top Rated"
+    },
+    "seeAll": "See all"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Type here",
+    "discoverH": "Discover our courses",
+    "discoverTxt": "Try to discover new courses with search or browse our categories.",
+    "noMatchH": "No matching courses",
+    "noMatchTxt": "Try a different search."
+  },
+  "categories": {
+    "title": "Categories"
+  },
+  "myCourses": {
+    "title": "My Courses",
+    "noEnrollH": "No enrolled course yet",
+    "noEnrollTxt": "Search or browse categories to find a course for you."
+  },
+  "account": {
+    "title": "Account",
+    "role": {
+      "student": "Student",
+      "instructor": "Instructor"
+    },
+    "list": {
+      "theme": "Dark Theme",
+      "info": "Account Details",
+      "lang": "Language",
+      "about": "About Us",
+      "faq": "FAQ",
+      "call": "Contact Us",
+      "terms": "Terms & Conditions",
+      "logout": "Logout"
+    }
+  },
+  "course": {
+    "hour": "hour",
+    "enrolled": "Enrolled",
+    "profile": "Profile",
+    "tabs": {
+      "videos": "Videos",
+      "about": "About",
+      "more": {
+        "title": "More",
+        "share": "Share this course",
+        "rate": "Rate this course"
+      }
+    },
+    "enroll": {
+      "title": "Enroll",
+      "btn": "Enroll",
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "semianually": "Semianually",
+      "anually": "Anually"
+    },
+    "instructor": {
+      "title": "Instructor",
+      "about": "About",
+      "showM": "show more",
+      "showL": "show less",
+      "courses": "Courses"
+    }
+  },
+  "auth": {
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "forget": "Forget Password?",
+    "reset": "Reset Password",
+    "agree": "Agree with ",
+    "checkEmail": "Please check your email for reset password",
+    "agreeError": "Please read and agree with the terms"
+  }
+}

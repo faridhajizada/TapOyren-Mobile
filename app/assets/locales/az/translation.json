@@ -1,0 +1,91 @@
+{
+  "tabs": {
+    "home": "Əsas",
+    "search": "Axtarış",
+    "categories": "Kateqoriyalar",
+    "myCourses": "Kurslarım",
+    "account": "Hesab"
+  },
+  "home": {
+    "title": {
+      "h1": "Tap",
+      "h2": "Öyrən",
+      "h3": "İnkişaf et"
+    },
+    "headers": {
+      "topRated": "Top Reytinq"
+    },
+    "seeAll": "Hamısı"
+  },
+  "search": {
+    "title": "Axtarış",
+    "placeholder": "Axtarış",
+    "discoverH": "Discover our courses",
+    "discoverTxt": "Try to discover new courses with search or browse our categories.",
+    "noMatchH": "No matching courses",
+    "noMatchTxt": "Try a different search."
+  },
+  "categories": {
+    "title": "Kateqoriyalar"
+  },
+  "myCourses": {
+    "title": "Kurslarım",
+    "noEnrollH": "No enrolled course yet",
+    "noEnrollTxt": "Search or browse categories to find a course for you."
+  },
+  "account": {
+    "title": "Hesab",
+    "role": {
+      "student": "Tələbə",
+      "instructor": "Təlimçi"
+    },
+    "list": {
+      "theme": "Gecə Rejımı",
+      "info": "Hesab Məlumatı",
+      "lang": "Dil seçimi",
+      "about": "Haqqımızda",
+      "faq": "FAQ",
+      "call": "Əlaqə",
+      "terms": "Şərtlər və Qaydalar",
+      "logout": "Çıxış"
+    }
+  },
+  "course": {
+    "hour": "saat",
+    "enrolled": "Yazıl",
+    "profile": "Profil",
+    "tabs": {
+      "videos": "Videolar",
+      "about": "Haqqinda",
+      "more": {
+        "title": "Əlavə",
+        "share": "Paylaş",
+        "rate": "Qiymətləndir"
+      }
+    },
+    "enroll": {
+      "title": "Yazıl",
+      "btn": "Yazıl",
+      "monthly": "Aylıq",
+      "quarterly": "Rüblük",
+      "semianually": "Yarımillik",
+      "anually": "İllik"
+    },
+    "instructor": {
+      "title": "Təlimçi",
+      "about": "Haqqında",
+      "showM": "daha çox",
+      "showL": "daha az",
+      "courses": "Kurslar"
+    }
+  },
+  "auth": {
+    "signin": "Daxil ol",
+    "signup": "Hesab aç",
+    "forget": "Şifrəni unutduz?",
+    "reset": "Şifrəni yenilə",
+    "agree": "Razılıq ",
+    "checkEmail": "Please check your email for reset password",
+    "agreeError": "Please read and agree with the terms"
+  }
+}
