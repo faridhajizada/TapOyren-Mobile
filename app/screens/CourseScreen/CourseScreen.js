@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { VimeoPlayer } from "@mindtechapps/rn-vimeo-player";
+// import { VimeoPlayer } from "@mindtechapps/rn-vimeo-player";
 import { Tab, TabView } from "react-native-elements";
 import sanitize from "sanitize-html";
 import WebView from "react-native-webview";
@@ -30,7 +30,7 @@ import i18n from '../../service/i18n'
 const CourseScreen = ({ route, navigation }) => {
   const [{ videoId, videoTitle }, setVideoId] = useState({});
   const [tabIndex, setTabIndex] = useState(0);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(false);
   const [course, setCourse] = useState({});
   const {isAuth, userData} = useContext(AuthContext);
@@ -40,7 +40,7 @@ const CourseScreen = ({ route, navigation }) => {
 
   const fetchCourse = async () => {
     try {
-      setisLoading(true);
+      setIsLoading(true);
       let res = await getCourse(route.params.id);
       let data = await res.data;
       setCourse(data[0]);
@@ -48,7 +48,7 @@ const CourseScreen = ({ route, navigation }) => {
     } catch (error) {
       console.log("Error from course screen ", error);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -88,12 +88,12 @@ const CourseScreen = ({ route, navigation }) => {
   const goToEnroll = () => {
     if (isAuth) {
       const prices = {
-        priceMonthly: course.priceMonthly,
-        priceQuarterly: course.priceQuarterly,
-        priceSemianually: course.priceSemianually,
-        priceAnually: course.priceAnually,
+        priceMonthly: course?.priceMonthly,
+        priceQuarterly: course?.priceQuarterly,
+        priceSemianually: course?.priceSemianually,
+        priceAnually: course?.priceAnually,
       }
-      navigation.navigate("Enroll", { title: course.title, prices, courseId: course.id });
+      navigation.navigate("Enroll", { title: course?.title, prices, courseId: course?.id });
     } else {
       navigation.navigate('Account', { screen: 'AuthScreen' })
     }
@@ -175,7 +175,7 @@ const CourseScreen = ({ route, navigation }) => {
             <CourseSections
               setVideoId={setVideoId}
               courseId={route.params.id}
-              isEnroll={course.isEnroll}
+              isEnroll={course?.isEnroll}
             />
           </TabView.Item>
           <TabView.Item onMoveShouldSetResponder={e => e.stopPropagation()}>

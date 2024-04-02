@@ -3,7 +3,6 @@ import { Pressable, Share, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Overlay, Rating } from "react-native-elements";
 import LottieView from 'lottie-react-native';
-
 import colors from "../../config/colors";
 import {AuthContext} from "../../context/authContext"
 import { setCourseRating } from "../../api/courseScreenAPI";
@@ -20,8 +19,8 @@ const CourseMore = ({ course, navigation }) => {
     try {
       // console.log('before async')
       const result = await Share.share({
-        message: `Hey, check this course out! ${course.title}, https://tapoyren.com/course/${course.courseId}`,
-        url: `https://tapoyren.com/course/${course.courseId}`,
+        message: `Hey, check this course out! ${course?.title}, https://tapoyren.com/course/${course?.courseId}`,
+        url: `https://tapoyren.com/course/${course?.courseId}`,
       });
       // console.log('after async')
     } catch (error) {
@@ -31,15 +30,15 @@ const CourseMore = ({ course, navigation }) => {
 
   const handleRateComplete = async (val) => {
     let data = {
-      courseId: course.id,
-      studentId: +userData.id,
-      rating: val.toString(),
+      courseId: course?.id,
+      studentId: +userData?.id,
+      rating: val?.toString(),
     }
     try {
       let res = await setCourseRating(data);
       if (res.status === 200) setRateAnim(false);
     } catch (error) {
-      console.log('error rate comlete ', error.message)
+      console.log('error rate complete ', error.message)
     }
   }
   const handleAnimFinish = () => {
@@ -48,7 +47,7 @@ const CourseMore = ({ course, navigation }) => {
   }
   const handleRate = () => { 
     if (isAuth) {
-      if (course.isEnrolled == null) {
+      if (course?.isEnrolled == null) {
         alert('You need to enrolled to the course first')
       } else {
         setRateModalVisible(true);
@@ -90,7 +89,7 @@ const CourseMore = ({ course, navigation }) => {
         { rateAnim ? <View style={styles.rateModal}>
             <View style={styles.rateTitle}>
               {/* <Ionicons name='star-half-outline' size={30} /> */}
-              <Text style={styles.rateTitleTxt}>{course.rating}</Text> 
+              <Text style={styles.rateTitleTxt}>{course?.rating}</Text> 
               <Text style={{fontSize: 20}}>/5</Text>
             </View>
             <Text style={{paddingVertical: 10}}>Do you like this course?</Text>

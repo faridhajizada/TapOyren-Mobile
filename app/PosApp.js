@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet } from "react-native";
-
 import { AuthContext } from "./context/authContext";
 import AppTabNavigator from "./navigators/AppTabNavigator";
 import Loader from "./components/Loader/Loader";

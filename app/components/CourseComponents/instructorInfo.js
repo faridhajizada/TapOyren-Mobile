@@ -12,14 +12,14 @@ const InstructorInfo = ({navigation, course, courseId}) => {
             resizeMode="contain"
             style={[styles.instructorImg, { backgroundColor: "silver" }]}
             source={
-              course.instructorAvatar
-                ? { uri: course.instructorAvatar }
+              course?.instructorAvatar
+                ? { uri: course?.instructorAvatar }
                 : require("../../assets/img/logo.png")
             }
           />
         </View>
         <View style={{flex: 1}}>
-          <Text style={styles.instructor}>{course.instructorName}</Text>
+          <Text style={styles.instructor}>{course?.instructorName}</Text>
           <Text style={styles.secondary}>{i18n.t('course.instructor.title')}</Text>
         </View>
       </View>
@@ -27,8 +27,8 @@ const InstructorInfo = ({navigation, course, courseId}) => {
         onPress={() =>
           navigation.navigate("InstructorProfile", {
             // instructorName: course.instructorName,
-            instructorId: course.instructorId,
-            img: course.instructorAvatar,
+            instructorId: course?.instructorId,
+            img: course?.instructorAvatar,
             courseId
           })
         }

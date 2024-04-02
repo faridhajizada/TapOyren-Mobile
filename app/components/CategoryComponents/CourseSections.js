@@ -10,7 +10,6 @@ import {
 
 import { getCourseSections } from "../../api/courseScreenAPI";
 import Loader from "../Loader/Loader";
-import CourseSection from "./CourseSection";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../config/colors";
 
@@ -32,14 +31,9 @@ const SectionItem = ({
   selectedItemId,
   setSelectedItemId,
 }) => {
-
   const handlePlay = () => {
-    if (isEnroll) {
-      // setVideoId(438371246);
-      setVideoId({videoId: item.vimeoVideoId, videoTitle: item.title});
-      setSelectedItemId(item.id);
-    } else if (item.preview) {
-      setVideoId({videoId: item.vimeoVideoId, videoTitle: item.title});
+    if (isEnroll || item.preview) {
+      setVideoId({ videoId: item.vimeoVideoId, videoTitle: item.title });
       setSelectedItemId(item.id);
     }
   };
@@ -56,14 +50,17 @@ const SectionItem = ({
         ]}
       >
         <Ionicons
-          // name={item.preview ? "play-circle-outline" : "lock-closed"}
-          name={isEnroll ? "play-circle-outline" : item.preview ? "play-circle-outline" : "lock-closed"}
+          name={
+            isEnroll || item.preview ? "play-circle-outline" : "lock-closed"
+          }
           color={colors.primary}
           size={24}
           style={{ marginRight: 5 }}
         />
         <View style={styles.videoInfo}>
-          <Text numberOfLines={1} style={styles.sectionItemTitle}>{item.title}</Text>
+          <Text numberOfLines={1} style={styles.sectionItemTitle}>
+            {item.title}
+          </Text>
           <Text style={{ color: "gray" }}>
             {(item.timescale / 3600).toFixed(2)}
           </Text>
@@ -75,29 +72,39 @@ const SectionItem = ({
 
 const CourseSections = ({ setVideoId, courseId, isEnroll, scrollToTop }) => {
   const [courseSections, setCourseSections] = useState([]);
-  const [isLoading, setisLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
   const fetchSections = async () => {
     try {
-      setisLoading(true);
+      setIsLoading(true);
       let res = await getCourseSections(courseId);
-      let data = await res.data;
-      let newData = data.map((i) => ({ ...i, data: i.courseVideos }));
-      setCourseSections(newData);
+      let data = res.data;
+      if(data,length === 0) {
+        
+        scrollToTop();
+      }
+      if (data && Array.isArray(data)) {
+        let newData =data?.map((i) => ({ ...i, data: i.courseVideos }));
+        setCourseSections(newData);
+      } else {
+        console.log("Invalid data format received from API");
+      }
     } catch (error) {
       console.log("CourseScreen ", error);
     } finally {
-      setisLoading(false);
+      setIsLoading(false);
     }
   };
+  
+  
 
   useEffect(() => {
     let mounted = true;
     if (mounted) fetchSections();
-    return () => { 
+    return () => {
       mounted = false;
-    }
+    };
   }, []);
 
   if (isLoading) return <Loader />;
@@ -133,12 +140,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 15,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
   sectionHeaderTitle: {
     flex: 1,
     fontWeight: "bold",
-    fontSize: 12
+    fontSize: 12,
   },
   sectionItem: {
     flexDirection: "row",
@@ -156,19 +163,6 @@ const styles = StyleSheet.create({
   sectionItemTitle: {
     flex: 1,
     fontSize: 15,
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
   },
 });
-
-// <FlatList
-//   data={courseSections}
-//   renderItem={({ item }) => (
-//     <CourseSection
-//       sectionItem={item}
-//       setVideoId={setVideoId}
-//       handleSelection={handleSelection}
-//       selectedItem={selectedItem}
-//     />
-//   )}
-//   keyExtractor={(item) => item.id.toString()}
-// />

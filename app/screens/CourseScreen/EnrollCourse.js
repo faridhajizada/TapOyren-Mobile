@@ -15,14 +15,14 @@ const EnrollCourse = ({route, navigation}) => {
   const [isVisibleOverlay, setIsVisibleOverlay] = useState(false);
   const [url, setUrl] = useState('');
   const [urlIsLoading, setUrlIsLoading] = useState(false);
-  const {priceMonthly, priceQuarterly, priceSemianually, priceAnually} = route.params.prices;
+  const {priceMonthly, priceQuarterly, priceSemiannually, priceAnnually} = route.params.prices;
   const {userData} = useContext(AuthContext);
   const {lang} = useContext(LangContext);
   const prices = [
     {idx: 0, title: 'course.enroll.monthly', type: 'monthly', color: '#4f9deb', info: null, price: priceMonthly},
-    {idx: 1, title: 'course.enroll.quarterly', type: 'quarterly', color: '#A72CE9', info: ["Recomended"], price: priceQuarterly},
-    {idx: 2, title: 'course.enroll.semianually', type: 'semianually', color: '#FF7500', info: ["Some basic info if u want"], price: priceSemianually},
-    {idx: 3, title: 'course.enroll.anually', type: 'anually', color: 'lightgreen', info: ["Some basic info if u want"], price: priceAnually},
+    {idx: 1, title: 'course.enroll.quarterly', type: 'quarterly', color: '#A72CE9', info: ["Recommended"], price: priceQuarterly},
+    {idx: 2, title: 'course.enroll.semiannually', type: 'semiannually', color: '#FF7500', info: ["Some basic info if u want"], price: priceSemiannually},
+    {idx: 3, title: 'course.enroll.annually', type: 'annually', color: 'light-green', info: ["Some basic info if u want"], price: priceAnnually},
   ];
   
   const fetchIp = async () => {

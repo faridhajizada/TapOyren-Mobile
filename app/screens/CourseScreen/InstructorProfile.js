@@ -26,7 +26,7 @@ const InstructorProfile = ({ route, navigation }) => {
       let res = await getInstructorCourses(route.params.instructorId);
       let data = await res.data;
       await setInstructorObj(data[0]);
-      let filtered = data[0].categoryCoursesDto.filter(i => i.courseId !== route.params.courseId);
+      let filtered = data[0]?.categoryCoursesDto.filter(i => i?.courseId !== route.params?.courseId);
       setInstructorCourses(filtered);
     } catch (error) {
       console.log("error instructor page ", error);
@@ -64,13 +64,13 @@ const InstructorProfile = ({ route, navigation }) => {
           />
         </View>
         <View>
-          <Text style={styles.instructor}>{instructorObj.instructorName}</Text>
+          <Text style={styles.instructor}>{instructorObj?.instructorName}</Text>
           <Text style={{}}>{i18n.t('course.instructor.title')}</Text>
         </View>
       </View>
       {instructorObj.about != "" && (
         <View style={styles.about}>
-          <TextInfo title={i18n.t('course.instructor.about')} txt={instructorObj.about} />
+          <TextInfo title={i18n.t('course.instructor.about')} txt={instructorObj?.about} />
         </View>
       )}
       <View style={styles.courses}>
