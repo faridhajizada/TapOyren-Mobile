@@ -18,10 +18,10 @@ export default CategoryComponent
 
 const styles = StyleSheet.create({
   category: {
-    width: 150,
-    height: 150,
+    width: 160,
+    height: 130,
     padding: 10,
-    borderRadius: 15,
+    borderRadius: 8,
     justifyContent: "flex-end",
     alignItems: "flex-end",
     marginVertical: 10,

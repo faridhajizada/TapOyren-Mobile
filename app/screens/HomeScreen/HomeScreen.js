@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  Pressable,
-  Animated,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image, Pressable, Animated, ActivityIndicator } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { getCourses as getCoursesBySubcatId } from "../../api/categoryScreenAPI";
 import { AuthContext } from "../../context/authContext";
@@ -24,6 +16,7 @@ const HomeScreen = ({ navigation }) => {
   const [byRating, setByRating] = useState([]);
   const [accaCourses, setAccaCourses] = useState([]);
   const [cfaCourses, setCfaCourses] = useState([]);
+  const [loading, setLoading] = useState(true); // Добавлено состояние для отслеживания загрузки данных
   const { isAuth } = useContext(AuthContext);
   const { lang } = useContext(LangContext);
   const fade1 = useRef(new Animated.Value(0)).current;
@@ -38,12 +31,15 @@ const HomeScreen = ({ navigation }) => {
     });
     setByRating(sortedByRating);
   };
+
   const handleCourse = (id, title) => {
     navigation.navigate("CourseScreen", { id, title });
   };
+
   const handleSeeAll = (title, courses) => {
     navigation.navigate("SeeAllScreen", { title, courses });
   };
+
   const fetchCourses = async () => {
     try {
       await SplashScreen.preventAutoHideAsync();
@@ -74,6 +70,7 @@ const HomeScreen = ({ navigation }) => {
       }).start();
     }
   };
+
   const fetchACCA = async () => {
     try {
       let res = await getCoursesBySubcatId(4, lang.id);
@@ -83,6 +80,7 @@ const HomeScreen = ({ navigation }) => {
       console.log("homescreen fetchACCA", error);
     }
   };
+
   const fetchCFA = async () => {
     try {
       let res = await getCoursesBySubcatId(5, lang.id);
@@ -92,6 +90,7 @@ const HomeScreen = ({ navigation }) => {
       console.log("homescreen fetchCFA", error);
     }
   };
+
   useEffect(() => {
     let isMounted = true;
 
@@ -101,9 +100,11 @@ const HomeScreen = ({ navigation }) => {
           await fetchCourses();
           await fetchACCA();
           await fetchCFA();
+          setLoading(false); // После загрузки данных устанавливаем состояние загрузки в false
         }
       } catch (error) {
         console.log("Error fetching data", error);
+        setLoading(false); // В случае ошибки также устанавливаем состояние загрузки в false
       }
     };
 
@@ -187,6 +188,7 @@ const HomeScreen = ({ navigation }) => {
             handleCourse={handleCourse}
           />
         </View>
+              
       </ScrollView>
     </MySafeAreaView>
   );
@@ -228,4 +230,10 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 18,
   },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+

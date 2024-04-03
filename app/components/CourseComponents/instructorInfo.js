@@ -26,7 +26,6 @@ const InstructorInfo = ({navigation, course, courseId}) => {
       <TouchableOpacity
         onPress={() =>
           navigation.navigate("InstructorProfile", {
-            // instructorName: course.instructorName,
             instructorId: course?.instructorId,
             img: course?.instructorAvatar,
             courseId

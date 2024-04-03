@@ -18,7 +18,6 @@ const SubcategoryCourses = ({ navigation, route }) => {
     try {
       let res = await getCourses(route.params.subcatId, lang.id);
       let data = await res.data;
-      // console.log('--------------------------', data);
       setCourses(data);
     } catch (error) {
       console.log('coursesScreen', error.message);

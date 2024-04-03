@@ -18,7 +18,7 @@ const SubcategoryComponent = ({ item, onPress }) => {
           {item.subcategoryTitle}
         </Text>
         <Text>
-          {item.courseCount} {item.courseCount !== 1 ? 'courses' : 'course' }{" "}
+          {item.courseCount} {item.courseCount !== 1 ? 'courses' : 'course' }
           <Ionicons name="chevron-forward" size={15} />
         </Text>
       </View>
