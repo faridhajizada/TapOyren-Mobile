@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import CategoryScreens from '../../components/CategoryComponents/CategoryScreens'
 import CourseComponent from '../../components/CategoryComponents/CourseComponent';
 
@@ -22,4 +21,4 @@ const SeeAllScreen = ({route, navigation}) => {
 
 export default SeeAllScreen
 
-const styles = StyleSheet.create({})
+
