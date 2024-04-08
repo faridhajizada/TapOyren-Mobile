@@ -68,8 +68,8 @@
       "btn": "Enroll",
       "monthly": "Monthly",
       "quarterly": "Quarterly",
-      "semianually": "Semianually",
-      "anually": "Anually"
+      "semiannually": "Semiannually",
+      "annually": "Annually"
     },
     "instructor": {
       "title": "Instructor",

@@ -1,5 +1,14 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
-import { StyleSheet, Text, View, ScrollView, Image, Pressable, Animated, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  Pressable,
+  Animated,
+  ActivityIndicator,
+} from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import { getCourses as getCoursesBySubcatId } from "../../api/categoryScreenAPI";
 import { AuthContext } from "../../context/authContext";
@@ -16,7 +25,7 @@ const HomeScreen = ({ navigation }) => {
   const [byRating, setByRating] = useState([]);
   const [accaCourses, setAccaCourses] = useState([]);
   const [cfaCourses, setCfaCourses] = useState([]);
-  const [loading, setLoading] = useState(true); // Добавлено состояние для отслеживания загрузки данных
+  const [loading, setLoading] = useState(true); 
   const { isAuth } = useContext(AuthContext);
   const { lang } = useContext(LangContext);
   const fade1 = useRef(new Animated.Value(0)).current;
@@ -136,7 +145,7 @@ const HomeScreen = ({ navigation }) => {
         {/* ----- Main - Header ----- */}
 
         {/* ----- Top Rated ----- */}
-        <View style={[styles.topRated, styles.section]}>
+        <View style={styles.section}>
           <View style={styles.sectionTitleWrap}>
             <Text style={styles.sectionTitle}>
               {i18n.t("home.headers.topRated")}
@@ -162,7 +171,7 @@ const HomeScreen = ({ navigation }) => {
         {/* ----- Top Rated ----- */}
 
         {/* --- ACCA --- */}
-        <View style={[styles.randomSubcatCourses, styles.section]}>
+        <View style={styles.section}>
           <View style={styles.sectionTitleWrap}>
             <Text style={styles.sectionTitle}>ACCA</Text>
             <Pressable onPress={() => handleSeeAll("ACCA", accaCourses)}>
@@ -176,7 +185,7 @@ const HomeScreen = ({ navigation }) => {
         </View>
 
         {/* --- CFA --- */}
-        <View style={[styles.randomSubcatCourses, styles.section]}>
+        <View style={styles.section}>
           <View style={styles.sectionTitleWrap}>
             <Text style={styles.sectionTitle}>CFA</Text>
             <Pressable onPress={() => handleSeeAll("CFA", cfaCourses)}>
@@ -188,7 +197,6 @@ const HomeScreen = ({ navigation }) => {
             handleCourse={handleCourse}
           />
         </View>
-              
       </ScrollView>
     </MySafeAreaView>
   );
@@ -198,7 +206,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   section: {
-    marginVertical: 15,
+    marginBottom: 5,
   },
   header: {
     flexDirection: "row",
@@ -232,8 +240,7 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
-

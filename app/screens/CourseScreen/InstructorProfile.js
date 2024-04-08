@@ -12,8 +12,7 @@ import { getInstructorCourses } from "../../api/courseScreenAPI";
 import CategoryScreens from "../../components/CategoryComponents/CategoryScreens";
 import CourseComponent from "../../components/CategoryComponents/CourseComponent";
 import Loader from "../../components/Loader/Loader";
-import i18n from '../../service/i18n'
-
+import i18n from "../../service/i18n";
 
 const InstructorProfile = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -26,7 +25,9 @@ const InstructorProfile = ({ route, navigation }) => {
       let res = await getInstructorCourses(route.params.instructorId);
       let data = await res.data;
       await setInstructorObj(data[0]);
-      let filtered = data[0]?.categoryCoursesDto.filter(i => i?.courseId !== route.params?.courseId);
+      let filtered = data[0]?.categoryCoursesDto.filter(
+        (i) => i?.courseId !== route.params?.courseId
+      );
       setInstructorCourses(filtered);
     } catch (error) {
       console.log("error instructor page ", error);
@@ -37,10 +38,10 @@ const InstructorProfile = ({ route, navigation }) => {
 
   useEffect(() => {
     let mounted = true;
-    if(mounted) fetchInstructor();
+    if (mounted) fetchInstructor();
     return () => {
       mounted = false;
-    }
+    };
   }, []);
 
   const handleCourse = (id, title) => {
@@ -51,6 +52,7 @@ const InstructorProfile = ({ route, navigation }) => {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Instructor Info */}
       <View style={styles.instructorWrap}>
         <View style={styles.instructorImgWrap}>
           <Image
@@ -63,18 +65,25 @@ const InstructorProfile = ({ route, navigation }) => {
             }
           />
         </View>
+
         <View>
           <Text style={styles.instructor}>{instructorObj?.instructorName}</Text>
-          <Text style={{}}>{i18n.t('course.instructor.title')}</Text>
+          <Text style={{}}>{i18n.t("course.instructor.title")}</Text>
         </View>
       </View>
+
       {instructorObj.about != "" && (
         <View style={styles.about}>
-          <TextInfo title={i18n.t('course.instructor.about')} txt={instructorObj?.about} />
+          <TextInfo
+            title={i18n.t("course.instructor.about")}
+            txt={instructorObj?.about}
+          />
         </View>
       )}
+      
+      {/* Instructor Info */}
       <View style={styles.courses}>
-        <Text style={styles.h2}>{i18n.t('course.instructor.courses')}</Text>
+        <Text style={styles.h2}>{i18n.t("course.instructor.courses")}</Text>
         <CategoryScreens
           // data={instructorObj.categoryCoursesDto}
           data={instructorCourses}
@@ -98,7 +107,7 @@ const styles = StyleSheet.create({
   },
   h2: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginVertical: 10,
   },
   instructorWrap: {

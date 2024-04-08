@@ -68,8 +68,8 @@
       "btn": "Yazıl",
       "monthly": "Aylıq",
       "quarterly": "Rüblük",
-      "semianually": "Yarımillik",
-      "anually": "İllik"
+      "semiannually": "Yarımillik",
+      "annually": "İllik"
     },
     "instructor": {
       "title": "Təlimçi",

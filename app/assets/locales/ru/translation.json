@@ -68,8 +68,8 @@
       "btn": "Записаться",
       "monthly": "Месячная",
       "quarterly": "Квартальная",
-      "semianually": "Полугодовая",
-      "anually": "Годовая"
+      "semiannually": "Полугодовая",
+      "annually": "Годовая"
     },
     "instructor": {
       "title": "Инструктор",
