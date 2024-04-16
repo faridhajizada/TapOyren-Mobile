@@ -4,19 +4,19 @@ import * as SecureStore from 'expo-secure-store';
 
 
 const axiosClient = axios.create({
-  baseURL: `http://tapoyren.morooq.az/`,
+  baseURL: `http://waiting.barattson.com/`,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Origin': 'http://tapoyren.morooq.az/'
+    'Origin': 'http://waiting.barattson.com/'
   },
 });
 export const authAxiosClient = axios.create({
-  baseURL: `http://tapoyren.morooq.az/`,
+  baseURL: `http://waiting.barattson.com/`,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'Origin': 'http://tapoyren.morooq.az/'
+    'Origin': 'http://waiting.barattson.com/'
   },
   withCredentials: true
 });
