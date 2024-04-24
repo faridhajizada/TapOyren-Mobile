@@ -1,9 +1,9 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
-
 import commonStyles from '../../config/commonStyles'
 import colors from '../../config/colors'
 
+// Category Page Component 
 const CategoryComponent = ({item, onPress}) => {
   return (
     <TouchableOpacity onPress={() => onPress(item.parentCategoryId, item.parentCategoryTitle)}>

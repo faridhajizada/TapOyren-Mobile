@@ -1,40 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {
-  SectionList,
-  StyleSheet,
-  Text,
-  TouchableWithoutFeedback,
-  View,
-  SafeAreaView,
-} from "react-native";
-
-import { getCourseSections } from "../../api/courseScreenAPI";
-import Loader from "../Loader/Loader";
+import { SectionList, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { getCourseSections } from "../../api/courseScreenAPI";
 import colors from "../../config/colors";
 
-const SectionHeader = ({ section }) => {
-  return (
-    <View style={styles.sectionHeader}>
-      <Text numberOfLines={2} style={styles.sectionHeaderTitle}>
-        {section.title}
-      </Text>
-      <Text>{(section.timescale / 3600).toFixed(2)}</Text>
-    </View>
-  );
-};
-
-const SectionItem = ({
-  item,
-  isEnroll,
-  setVideoId,
-  selectedItemId,
-  setSelectedItemId,
-}) => {
+const SectionItem = ({ item, isEnroll, setVideoId, selectedItemId }) => {
   const handlePlay = () => {
     if (isEnroll || item.preview) {
       setVideoId({ videoId: item.vimeoVideoId, videoTitle: item.title });
-      setSelectedItemId(item.id);
+      // setSelectedItemId(item.id);
+       
     }
   };
 
@@ -44,125 +19,108 @@ const SectionItem = ({
         style={[
           styles.sectionItem,
           {
-            backgroundColor:
-              item.id === selectedItemId ? "rgba(110, 195, 255, .3)" : null,
+            backgroundColor: item.id === selectedItemId ? "rgba(110, 195, 255, .3)" : null,
           },
         ]}
       >
         <Ionicons
-          name={
-            isEnroll || item.preview ? "play-circle-outline" : "lock-closed"
-          }
+          name={isEnroll || item.preview ? "play-circle-outline" : "lock-closed"}
           color={colors.primary}
-          size={24}
-          style={{ marginRight: 5 }}
+          size={32}
+          style={styles.icon}
         />
         <View style={styles.videoInfo}>
-          <Text numberOfLines={1} style={styles.sectionItemTitle}>
-            {item.title}
-          </Text>
-          <Text style={{ color: "gray" }}>
-            {(item.timescale / 3600).toFixed(2)}
-          </Text>
+          <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
+          <Text style={styles.time}>{(item.timescale / 3600).toFixed(2)}</Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
 };
 
-const CourseSections = ({ setVideoId, courseId, isEnroll, scrollToTop }) => {
-  const [courseSections, setCourseSections] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [selectedItemId, setSelectedItemId] = useState(null);
-
-  const fetchSections = async () => {
-    try {
-      setIsLoading(true);
-      let res = await getCourseSections(courseId);
-      let data = res.data;
-      if(data,length === 0) {
-        
-        scrollToTop();
-      }
-      if (data && Array.isArray(data)) {
-        let newData =data?.map((i) => ({ ...i, data: i.courseVideos }));
-        setCourseSections(newData);
-      } else {
-        console.log("Invalid data format received from API");
-      }
-    } catch (error) {
-      console.log("CourseScreen ", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  
+const CourseSections = ({ setVideoId, courseId, isEnroll }) => {
+  const [sections, setSections] = useState([]);
 
   useEffect(() => {
-    let mounted = true;
-    if (mounted) fetchSections();
-    return () => {
-      mounted = false;
+    const fetchSections = async () => {
+      try {
+        const res = await getCourseSections(courseId);
+        if (res?.data && Array.isArray(res.data)) {
+          const sectionsData = res.data.map((section) => ({
+            title: section.title,
+            timescale: section.timescale,
+            data: section.sectionVideos || [],
+          }));
+          setSections(sectionsData);
+        } else {
+          console.error("Data is not in the expected format:", res);
+        }
+      } catch (error) {
+        console.error("Error fetching sections:", error);
+      }
     };
-  }, []);
 
-  if (isLoading) return <Loader />;
+    fetchSections();
+  }, [courseId]);
 
   return (
-    <SectionList
-      style={styles.list}
-      sections={courseSections}
-      renderItem={({ item }) => (
-        <SectionItem
-          item={item}
-          setVideoId={setVideoId}
-          selectedItemId={selectedItemId}
-          setSelectedItemId={setSelectedItemId}
-          isEnroll={isEnroll}
-        />
-      )}
-      renderSectionHeader={({ section }) => <SectionHeader section={section} />}
-      extraData={selectedItemId}
-      keyExtractor={(item) => item.vimeoVideoId.toString()}
-    />
+    <View style={styles.container}>
+      <SectionList
+        sections={sections}
+        keyExtractor={(item, index) => `${item.id.toString()}${index}`}
+        renderItem={({ item }) => (
+          <SectionItem
+            item={item}
+            isEnroll={isEnroll}
+            setVideoId={setVideoId}
+            // selectedItemId={selectedItemId} 
+            // setSelectedItemId={setSelectedItemId} 
+          />
+        )}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.sectionHeader}>{title}</Text>
+        )}
+      />
+    </View>
   );
 };
 
-export default CourseSections;
-
 const styles = StyleSheet.create({
-  list: {
-    paddingHorizontal: 10,
+  container: {
+    flex: 1,
+    marginTop: 0,
+    marginHorizontal: 10,
   },
   sectionHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingVertical: 15,
-    paddingHorizontal: 10,
-    backgroundColor: "#fff",
-  },
-  sectionHeaderTitle: {
-    flex: 1,
+    fontSize: 18,
     fontWeight: "bold",
-    fontSize: 12,
+    backgroundColor: colors.primary,
+    color: "white",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginTop: 0,
   },
   sectionItem: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 7,
-    paddingVertical: 3,
-    borderRadius: 7,
+    margin: 3,
+  },
+  icon: {
+    marginRight: 5,
+  },
+  title: {
+    flex: 1,
+    fontSize: 16,
+  },
+  time: {
+    color: "gray",
   },
   videoInfo: {
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 13,
-  },
-  sectionItemTitle: {
-    flex: 1,
-    fontSize: 15,
-    textTransform: "capitalize",
   },
 });
+
+export default CourseSections;

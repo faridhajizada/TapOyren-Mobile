@@ -15,10 +15,10 @@ const CourseSection = ({
   handleSelection,
   selectedItem,
 }) => {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <TouchableWithoutFeedback onPress={() => setisOpen((prev) => !prev)}>
+    <TouchableWithoutFeedback onPress={() => setIsOpen((prev) => !prev)}>
       <View style={styles.section}>
         <View style={styles.sectionInfo}>
           <Text numberOfLines={1} style={styles.sectionTitle}>

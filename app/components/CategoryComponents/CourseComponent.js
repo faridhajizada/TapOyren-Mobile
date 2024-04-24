@@ -7,6 +7,8 @@ import commonStyles from "../../config/commonStyles";
 import colors from "../../config/colors";
 import i18n from '../../service/i18n'
 
+// Category Course Page
+
 const CourseComponent = ({ item, onPress }) => {
   const [isImgLoad, setIsImgLoad] = useState(false);
   return (

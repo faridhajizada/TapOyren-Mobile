@@ -52,6 +52,7 @@
   },
   "course": {
     "hour": "hour",
+    "minutes": "minutes",
     "enrolled": "Enrolled",
     "profile": "Profile",
     "tabs": {

@@ -52,6 +52,7 @@
   },
   "course": {
     "hour": "часов",
+    "minutes": "минут",
     "enrolled": "Записан",
     "profile": "Профиль",
     "tabs": {

@@ -58,10 +58,8 @@ const CourseScreen = ({ route, navigation }) => {
   };
 
   const handleDownload = async () => {
-    // const url = `https://player.vimeo.com/video/${videoId}`
-    const url = `https://player.vimeo.com/video/85063766`;
-    // const url = "http://techslides.com/demos/sample-videos/small.mp4";
-
+    const videoId = "85063766";
+    const url = `https://player.vimeo.com/video/${videoId}`
     const callback = (downloadProgress) => {
       let prog =
         downloadProgress.totalBytesWritten /
@@ -198,20 +196,11 @@ const CourseScreen = ({ route, navigation }) => {
           style={{ width: "100%" }}
           onMoveShouldSetResponder={(e) => e.stopPropagation()}
         >
-          {/* <CourseSections
+          <CourseSections
             setVideoId={setVideoId}
+            // setVideoId={85063766}
             courseId={route.params.id}
             isEnroll={course?.isEnroll}
-          /> */}
-          <WebView
-            source={{
-              uri: `https://player.vimeo.com/video/85063766`,
-              headers: { Referer: "https://tapoyren.com" },
-            }}
-            onLoadStart={() => setIsVideoLoading(true)}
-            onLoadEnd={() => setIsVideoLoading(false)}
-            onError={(err) => console.warn("error from video webview", err)}
-            allowsFullscreenVideo={true}
           />
         </TabView.Item>
         {/* Course video */}

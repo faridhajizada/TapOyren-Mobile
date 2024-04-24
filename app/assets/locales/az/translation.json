@@ -52,6 +52,7 @@
   },
   "course": {
     "hour": "saat",
+    "minutes":"dəqiqə",
     "enrolled": "Yazıl",
     "profile": "Profil",
     "tabs": {
