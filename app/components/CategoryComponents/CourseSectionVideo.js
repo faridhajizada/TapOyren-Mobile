@@ -18,8 +18,8 @@ const CourseSectionVideo = ({sectionVideo, setVideoId, handleSelection, selected
 
   const handlePlay = () => {
     handleSelection(sectionVideo.title)
-    setVideoId(85063766);
-    // setVideoId(85063766);
+    
+    setVideoId(setVideoId);
   }
   return (
     <TouchableWithoutFeedback onPress={handlePlay}>

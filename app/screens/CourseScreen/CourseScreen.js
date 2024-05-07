@@ -25,6 +25,7 @@ import InstructorInfo from "../../components/CourseComponents/instructorInfo";
 import { AuthContext } from "../../context/authContext";
 import { useIsFocused } from "@react-navigation/native";
 import i18n from "../../service/i18n";
+import { getCallCourseByIdWithSectionAndSectionVideo } from "../../api/courseScreenAPI";
 
 const CourseScreen = ({ route, navigation }) => {
   const [{ videoId, videoTitle }, setVideoId] = useState({});
@@ -42,6 +43,7 @@ const CourseScreen = ({ route, navigation }) => {
       setIsLoading(true);
       let res = await getCourse(route.params.id);
       let data = await res.data;
+      // console.log("data from course screen ", data);
       setCourse(data[0]);
       // console.log(data[0].priceQuarterly);
     } catch (error) {
@@ -51,6 +53,7 @@ const CourseScreen = ({ route, navigation }) => {
     }
   };
 
+
   const handleDelete = async () => {
     await FileSystem.deleteAsync(localPath);
     setProgress(0);
@@ -59,7 +62,7 @@ const CourseScreen = ({ route, navigation }) => {
 
   const handleDownload = async () => {
     const videoId = "85063766";
-    const url = `https://player.vimeo.com/video/${videoId}`
+    const url = `https://player.vimeo.com/video/${videoId}`;
     const callback = (downloadProgress) => {
       let prog =
         downloadProgress.totalBytesWritten /
@@ -120,7 +123,7 @@ const CourseScreen = ({ route, navigation }) => {
           <View style={{ height: Dimensions.get("window").width / 1.78 }}>
             <WebView
               source={{
-                uri: `https://player.vimeo.com/video/85063766`,
+                uri: `https://player.vimeo.com/video/416043918`,
                 headers: { Referer: "https://tapoyren.com" },
               }}
               onLoadStart={() => setIsVideoLoading(true)}

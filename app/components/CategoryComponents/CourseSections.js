@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { SectionList, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import {
+  SectionList,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { getCourseSections } from "../../api/courseScreenAPI";
 import colors from "../../config/colors";
@@ -8,8 +14,8 @@ const SectionItem = ({ item, isEnroll, setVideoId, selectedItemId }) => {
   const handlePlay = () => {
     if (isEnroll || item.preview) {
       setVideoId({ videoId: item.vimeoVideoId, videoTitle: item.title });
+      setVideoId({ videoId: sectionVideo.id, videoTitle: sectionVideo.title });
       // setSelectedItemId(item.id);
-       
     }
   };
 
@@ -19,18 +25,23 @@ const SectionItem = ({ item, isEnroll, setVideoId, selectedItemId }) => {
         style={[
           styles.sectionItem,
           {
-            backgroundColor: item.id === selectedItemId ? "rgba(110, 195, 255, .3)" : null,
+            backgroundColor:
+              item.id === selectedItemId ? "rgba(110, 195, 255, .3)" : null,
           },
         ]}
       >
         <Ionicons
-          name={isEnroll || item.preview ? "play-circle-outline" : "lock-closed"}
+          name={
+            isEnroll || item.preview ? "play-circle-outline" : "lock-closed"
+          }
           color={colors.primary}
           size={32}
           style={styles.icon}
         />
         <View style={styles.videoInfo}>
-          <Text numberOfLines={1} style={styles.title}>{item.title}</Text>
+          <Text numberOfLines={1} style={styles.title}>
+            {item.title}
+          </Text>
           <Text style={styles.time}>{(item.timescale / 3600).toFixed(2)}</Text>
         </View>
       </View>
@@ -73,8 +84,10 @@ const CourseSections = ({ setVideoId, courseId, isEnroll }) => {
             item={item}
             isEnroll={isEnroll}
             setVideoId={setVideoId}
-            // selectedItemId={selectedItemId} 
-            // setSelectedItemId={setSelectedItemId} 
+            // selectedItemId={selectedItemId}
+            // setSelectedItemId={setSelectedItemId}
+            handleSelection={handleSelection}
+            selectedItem={selectedItem} 
           />
         )}
         renderSectionHeader={({ section: { title } }) => (

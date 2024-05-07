@@ -13,3 +13,8 @@ export const setCourseRating = (data) => {
   return axiosClient.post(`/api/CourseRating`, data);
 }
 
+export const getCallCourseByIdWithSectionAndSectionVideo = (id) => {
+  return axiosClient.get(`api/Course/CallCourseByIdWithSectionAndSectionVideos/${id}`);
+}
+
+
